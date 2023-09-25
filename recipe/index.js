@@ -21,6 +21,13 @@ let initialRecipe = [
 //     res.status(200).sendFile(__dirname+"/index.html")
 // })
 
+// app.post("/post",check,(req,res)=>{
+//   let data = {name: req.body.name, grid: req.body.grid, course: req.body.course}
+//   res.status(200).send(data)
+// })
+
+
+
 // ### GET Route
 app.get("/",(req,res)=>{
     res.status(200).send("welcome to the recipe api.")
