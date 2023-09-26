@@ -3,18 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title></title>
 </head>
 <body>
-    <form action="/add" method="post" >
-        <input type="text" name="name" placeholder="Name">
-        <input type="text" name="description" placeholder="description">
-        <input type="text" name="preparationTime" placeholder="preparationTime">
-        <input type="text" name="cookingTime" placeholder="cookingTime">
-        <input type="url" name="imageUrl" placeholder="imageUrl">
-        <input type="text" name="country" placeholder="country">
-        <input type="text" name="veg" placeholder="veg">
-        <input type="submit">
-    </form>
+    <div id="parent"></div>
 </body>
+<script>
+    fetch("/recipe/all")
+      .then((response) => response.json())
+      .then((data) => {
+        const VarDate = document.getElementById("parent");
+        data.forEach((recipe) => {
+          const recipeDiv = document.createElement("div");
+          recipeDiv.innerHTML = `
+                        <h2>${recipe.name}</h2>
+                        <p>${recipe.description}</p>
+                        <p>Preparation Time: ${recipe.preparationTime}</p>
+                        <p>Cooking Time: ${recipe.cookingTime}</p>
+                        <p>Country: ${recipe.country}</p>
+                        <p>Veg: ${recipe.veg ? "Yes" : "No"}</p>
+                        <img src="${recipe.imageUrl}" alt="${
+            recipe.name
+          }" width="200">
+                    `;
+          VarDate.appendChild(recipeDiv);
+        });
+      })
+      .catch((error) => console.error(error));
+  </script>
+
 </html>

@@ -4,7 +4,7 @@ const check = (req,res,next) =>{
         next()
     }
     else{
-        res.status(404).send("All fields are required")
+        res.status(400).send("All fields are required.")
     }
 }
 
