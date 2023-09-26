@@ -1,10 +1,10 @@
 const check = (req,res,next) =>{
-    let {name,grid,course} = req.body
-    if(name&&grid&&course){
+    let {name,description,preparationTime,cookingTime,imageUrl,country,veg} = req.body
+    if(name&&description&&preparationTime&&cookingTime&&imageUrl&&country&&veg){
         next()
     }
     else{
-        res.status(404).json({error:"missing data"})
+        res.status(404).send("All fields are required")
     }
 }
 
